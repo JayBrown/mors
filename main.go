@@ -105,17 +105,17 @@ func main() {
         var inputString string = os.Args[1]
         var converted string
         if matched, _ := regexp.MatchString("^[\\/.\\-\\s]*$", inputString); matched {
-            fmt.Println("Morse string detected ... ")
-            fmt.Println("The corresponding ASCII string is below")
+            fmt.Fprintln(os.Stderr, "Morse string detected... ")
+            fmt.Fprintln(os.Stderr, "The corresponding ASCII string is below:")
             converted = convertMorseToAscii(inputString)
         } else {
-            fmt.Println("Ascii string detected ... ")
-            fmt.Println("The corresponding Morse string is below")
+            fmt.Fprintln(os.Stderr, "Ascii string detected... ")
+            fmt.Fprintln(os.Stderr, "The corresponding Morse string is below:")
             converted = convertAsciiToMorse(inputString)
         }
         fmt.Println(converted)
         _ = clipboard.WriteAll(converted)
-        fmt.Println("Converted string copied to your clipboard")
+        fmt.Fprintln(os.Stderr, "Converted string copied to your clipboard")
     } else {
         fmt.Println("Usage: mors [ascii or morse string here]")
     }
